@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{24A050A0-D78A-4552-880E-BAD9933609C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtu.Rentals.Api", "src\Mtu.Rentals.Api\Mtu.Rentals.Api.csproj", "{8628FAAD-40D0-47D5-804E-728DE067234C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtu.Rentals.Application", "src\Mtu.Rentals.Application\Mtu.Rentals.Application.csproj", "{79422DB3-F1F4-49CC-9849-483F9D92889D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtu.Rentals.Contracts", "src\Mtu.Rentals.Contracts\Mtu.Rentals.Contracts.csproj", "{F1D963DE-375C-49F2-802E-EBDDF0148291}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtu.Rentals.Domain", "src\Mtu.Rentals.Domain\Mtu.Rentals.Domain.csproj", "{39E1E181-5E10-45A1-BF2D-094491A46BD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtu.Rentals.Infrastructure", "src\Mtu.Rentals.Infrastructure\Mtu.Rentals.Infrastructure.csproj", "{E8A91315-7F99-4B69-B600-749D6C736EC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BE07CB22-A07A-4D0C-9D60-01BB6551524F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mtu.Rentals.Tests", "tests\Mtu.Rentals.Tests\Mtu.Rentals.Tests.csproj", "{375B6301-4850-4C24-8D60-5DF3D5A9AE52}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8628FAAD-40D0-47D5-804E-728DE067234C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8628FAAD-40D0-47D5-804E-728DE067234C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8628FAAD-40D0-47D5-804E-728DE067234C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8628FAAD-40D0-47D5-804E-728DE067234C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79422DB3-F1F4-49CC-9849-483F9D92889D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79422DB3-F1F4-49CC-9849-483F9D92889D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79422DB3-F1F4-49CC-9849-483F9D92889D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79422DB3-F1F4-49CC-9849-483F9D92889D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1D963DE-375C-49F2-802E-EBDDF0148291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1D963DE-375C-49F2-802E-EBDDF0148291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1D963DE-375C-49F2-802E-EBDDF0148291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1D963DE-375C-49F2-802E-EBDDF0148291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E1E181-5E10-45A1-BF2D-094491A46BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E1E181-5E10-45A1-BF2D-094491A46BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E1E181-5E10-45A1-BF2D-094491A46BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E1E181-5E10-45A1-BF2D-094491A46BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A91315-7F99-4B69-B600-749D6C736EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A91315-7F99-4B69-B600-749D6C736EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A91315-7F99-4B69-B600-749D6C736EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A91315-7F99-4B69-B600-749D6C736EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{375B6301-4850-4C24-8D60-5DF3D5A9AE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375B6301-4850-4C24-8D60-5DF3D5A9AE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375B6301-4850-4C24-8D60-5DF3D5A9AE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375B6301-4850-4C24-8D60-5DF3D5A9AE52}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8628FAAD-40D0-47D5-804E-728DE067234C} = {24A050A0-D78A-4552-880E-BAD9933609C1}
+		{79422DB3-F1F4-49CC-9849-483F9D92889D} = {24A050A0-D78A-4552-880E-BAD9933609C1}
+		{F1D963DE-375C-49F2-802E-EBDDF0148291} = {24A050A0-D78A-4552-880E-BAD9933609C1}
+		{39E1E181-5E10-45A1-BF2D-094491A46BD7} = {24A050A0-D78A-4552-880E-BAD9933609C1}
+		{E8A91315-7F99-4B69-B600-749D6C736EC8} = {24A050A0-D78A-4552-880E-BAD9933609C1}
+		{375B6301-4850-4C24-8D60-5DF3D5A9AE52} = {BE07CB22-A07A-4D0C-9D60-01BB6551524F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: mtu
+      POSTGRES_PASSWORD: mtu
+      POSTGRES_DB: mtu
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mtu -d mtu"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: src/Mtu.Rentals.Api/Dockerfile
+    environment:
+      ConnectionStrings__postgres: Host=postgres;Database=mtu;Username=mtu;Password=mtu
+      RabbitMQ__Host: rabbitmq
+      RabbitMQ__User: guest
+      RabbitMQ__Pass: guest
+      Storage__Root: /app/storage
+      ASPNETCORE_URLS: http://+:80
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    volumes:
+      - api_storage:/app/storage
+
+volumes:
+  pgdata:
+  api_storage:

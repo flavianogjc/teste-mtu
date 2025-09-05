@@ -1,0 +1,6 @@
+@Mtu.Rentals.Api_HostAddress = http://localhost:5103
+
+GET {{Mtu.Rentals.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
