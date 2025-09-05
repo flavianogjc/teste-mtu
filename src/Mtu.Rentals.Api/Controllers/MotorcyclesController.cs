@@ -40,18 +40,20 @@ public sealed class MotorcyclesController : ControllerBase
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MotorcycleResponse>>> List(
-        [FromQuery(Name = "placa")] string? plate, CancellationToken ct)
+        [FromQuery(Name = "placa")] string? plate,
+        CancellationToken ct)
     {
         var q = _db.Motorcycles.AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(plate))
         {
-            var norm = plate.ToUpper().Replace("-", "");
-            q = q.Where(m => m.Plate.Normalized == norm);
+            // comparação exata com o valor armazenado
+            q = q.Where(m => m.Plate.Value == plate);
         }
 
         var items = await q
-            .Select(m => new MotorcycleResponse(m.Id, m.Identifier, m.Year, m.Model, m.Plate.Value))
+            .Select(m => new MotorcycleResponse(
+                m.Id, m.Identifier, m.Year, m.Model, m.Plate.Value))
             .ToListAsync(ct);
 
         return Ok(items);

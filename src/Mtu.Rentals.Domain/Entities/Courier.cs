@@ -1,4 +1,3 @@
-// src/Mtu.Rentals.Domain/Entities/Courier.cs
 using System;
 using System.Linq;
 
@@ -7,12 +6,12 @@ namespace Mtu.Rentals.Domain.Entities;
 public sealed class Courier
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
-    public string Name { get; private set; }
-    public Cnpj Cnpj { get; private set; }
+    public string Name { get; private set; } = null!;
+    public Cnpj Cnpj { get; private set; } = null!;
 
     public DateTime BirthDate { get; private set; }
 
-    public string CnhNumber { get; private set; }
+    public string CnhNumber { get; private set; } = null!;
     public CnhType CnhType { get; private set; }
     public string? CnhImagePath { get; private set; }
 
@@ -23,14 +22,11 @@ public sealed class Courier
         Name = name.Trim();
         Cnpj = cnpj;
         BirthDate = AsDateUtc(birthDate); // normalizes to 00:00:00 UTC
-        CnhNumber = Normalize(cnhNumber);
+        CnhNumber = cnhNumber;
         CnhType = cnhType;
     }
 
     public void SetCnhImage(string path) => CnhImagePath = path;
-
-    private static string Normalize(string v)
-        => new string(v.Where(char.IsLetterOrDigit).ToArray()).ToUpperInvariant();
 
     // Guarantees UTC without “assuming” the wrong time zone
     private static DateTime AsUtc(DateTime dt) => dt.Kind switch
