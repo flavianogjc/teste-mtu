@@ -33,6 +33,7 @@ public sealed class CouriersController : ControllerBase
         }
 
         var c = new Courier(
+            req.Identificador,
             req.Nome,
             new Cnpj(req.Cnpj),
             birthUtc.Date, // ou use birthUtc se seu domínio for DateTime

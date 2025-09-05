@@ -5,7 +5,7 @@ public sealed class Motorcycle
     public Guid Id { get; private set; } = Guid.NewGuid();
     public string Identifier { get; private set; } = null!;
     public int Year { get; private set; }
-    public string Model { get; private set; }
+    public string Model { get; private set; } = null!;
     public LicensePlate Plate { get; private set; } = null!;
 
     private Motorcycle() { }

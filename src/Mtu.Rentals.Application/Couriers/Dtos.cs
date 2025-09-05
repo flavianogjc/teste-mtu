@@ -3,6 +3,7 @@ using System;
 using System.Text.Json.Serialization;
 
 public sealed record CreateCourierPtBrRequest(
+    [property: JsonPropertyName("identificador")]     string Identificador,
     [property: JsonPropertyName("nome")]              string Nome,
     [property: JsonPropertyName("cnpj")]              string Cnpj,
     [property: JsonPropertyName("data_nascimento")]   string DataNascimento, // "YYYY-MM-DDTHH:mm:ssZ" (UTC)

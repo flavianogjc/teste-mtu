@@ -18,8 +18,9 @@ public sealed class Courier
 
     private Courier() { }
 
-    public Courier(string name, Cnpj cnpj, DateTime birthDate, string cnhNumber, CnhType cnhType)
+    public Courier(string identifier, string name, Cnpj cnpj, DateTime birthDate, string cnhNumber, CnhType cnhType)
     {
+        Identifier = identifier.Trim();
         Name = name.Trim();
         Cnpj = cnpj;
         BirthDate = AsDateUtc(birthDate); // normalizes to 00:00:00 UTC
