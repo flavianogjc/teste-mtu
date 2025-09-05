@@ -25,10 +25,11 @@ public sealed class CouriersApiTests : IClassFixture<CustomWebAppFactory>
     {
         var body = new
         {
+            identificador = "entregador123",
             nome = "  Ana da Silva  ",
             cnpj = "12345678000100",
             data_nascimento = new DateOnly(1990, 1, 1),
-            numero_cnh = " ab-123.456 ",
+            numero_cnh = "ab-123.456",
             tipo_cnh = "A+B"
         };
 
@@ -44,11 +45,11 @@ public sealed class CouriersApiTests : IClassFixture<CustomWebAppFactory>
         var created = await postResp.Content.ReadFromJsonAsync<CourierPtBrResponse>(JsonOpts);
         created.Should().NotBeNull();
         created!.nome.Should().Be("Ana da Silva");
-        created.numero_cnh.Should().Be("AB123456");
+        created.numero_cnh.Should().Be("ab-123.456");
         created.tipo_cnh.Should().Be("A+B");
         created.imagem_cnh.Should().BeNull();
 
-        var id = created.identificador;
+        var id = created.id;
         var getResp = await _client.GetAsync($"/entregadores/{id}");
         getResp.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -63,6 +64,7 @@ public sealed class CouriersApiTests : IClassFixture<CustomWebAppFactory>
         // 1) create courier
         var post = await _client.PostAsJsonAsync("/entregadores", new
         {
+            identificador = "entregador123",
             nome = "Mia",
             cnpj = "12345678000101",
             data_nascimento = new DateOnly(2000, 2, 2),
@@ -77,7 +79,7 @@ public sealed class CouriersApiTests : IClassFixture<CustomWebAppFactory>
         }
 
         var created = await post.Content.ReadFromJsonAsync<CourierPtBrResponse>(JsonOpts);
-        var id = created!.identificador;
+        var id = created!.id;
 
         // 2) send base64 of a minimal PNG
         var pngBytes = new byte[] { 0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A }; // signature PNG
@@ -119,6 +121,7 @@ public sealed class CouriersApiTests : IClassFixture<CustomWebAppFactory>
         // create courier
         var post = await _client.PostAsJsonAsync("/entregadores", new
         {
+            identificador = "entregador123",
             nome = "Zara",
             cnpj = "12345678000102",
             data_nascimento = new DateOnly(1999, 9, 9),
@@ -128,7 +131,7 @@ public sealed class CouriersApiTests : IClassFixture<CustomWebAppFactory>
         post.EnsureSuccessStatusCode();
 
         var created = await post.Content.ReadFromJsonAsync<CourierPtBrResponse>(JsonOpts);
-        var id = created!.identificador;
+        var id = created!.id;
 
         // JPEG: 0xFF 0xD8 (SOI) 0xFF
         var jpegHeader = new byte[] { 0xFF, 0xD8, 0xFF, 0xDB };
@@ -144,6 +147,7 @@ public sealed class CouriersApiTests : IClassFixture<CustomWebAppFactory>
 }
 
 public sealed record CourierPtBrResponse(
+    string id,
     string identificador,
     string nome,
     string cnpj,

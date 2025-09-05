@@ -13,6 +13,7 @@ public sealed record CreateCourierPtBrRequest(
 );
 
 public sealed record CourierPtBrResponse(
+    [property: JsonPropertyName("id")]            Guid   Id,
     [property: JsonPropertyName("identificador")]
     string Identificador,
     [property: JsonPropertyName("nome")]
