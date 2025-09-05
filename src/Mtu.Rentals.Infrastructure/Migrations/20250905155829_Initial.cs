@@ -50,7 +50,6 @@ namespace Mtu.Rentals.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    identifier = table.Column<string>(type: "text", nullable: false),
                     year = table.Column<int>(type: "integer", nullable: false),
                     model = table.Column<string>(type: "text", nullable: false),
                     plate = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),

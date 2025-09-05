@@ -69,11 +69,6 @@ namespace Mtu.Rentals.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<string>("Identifier")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("identifier");
-
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasColumnType("text")

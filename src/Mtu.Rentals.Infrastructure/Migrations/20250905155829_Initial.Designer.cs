@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Mtu.Rentals.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250905154333_Initial")]
+    [Migration("20250905155829_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -71,11 +71,6 @@ namespace Mtu.Rentals.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    b.Property<string>("Identifier")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("identifier");
 
                     b.Property<string>("Model")
                         .IsRequired()

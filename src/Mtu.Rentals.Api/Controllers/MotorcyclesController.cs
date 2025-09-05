@@ -23,7 +23,8 @@ public sealed class MotorcyclesController : ControllerBase
     public async Task<ActionResult<MotorcycleResponse>> Create(
         [FromBody] CreateMotorcycleRequest req, CancellationToken ct)
     {
-        var entity = new Motorcycle(req.Identifier, req.Year, req.Model, new LicensePlate(req.Plate));
+        var entity = new Motorcycle(req.Year, req.Model, new LicensePlate(req.Plate));
+
         _db.Motorcycles.Add(entity);
         await _db.SaveChangesAsync(ct);
 
@@ -35,7 +36,12 @@ public sealed class MotorcyclesController : ControllerBase
         }, ct);
 
         return CreatedAtAction(nameof(GetById), new { id = entity.Id },
-            new MotorcycleResponse(entity.Id, entity.Identifier, entity.Year, entity.Model, entity.Plate.Value));
+            new MotorcycleResponse(
+                entity.Id.ToString(),
+                entity.Year,
+                entity.Model,
+                entity.Plate.Value
+            ));
     }
 
     [HttpGet]
@@ -53,7 +59,10 @@ public sealed class MotorcyclesController : ControllerBase
 
         var items = await q
             .Select(m => new MotorcycleResponse(
-                m.Id, m.Identifier, m.Year, m.Model, m.Plate.Value))
+                m.Id.ToString(),
+                m.Year,
+                m.Model,
+                m.Plate.Value))
             .ToListAsync(ct);
 
         return Ok(items);
@@ -65,7 +74,12 @@ public sealed class MotorcyclesController : ControllerBase
         var m = await _db.Motorcycles.FindAsync(new object?[] { id }, ct);
         if (m is null) return NotFound();
 
-        return new MotorcycleResponse(m.Id, m.Identifier, m.Year, m.Model, m.Plate.Value);
+        return new MotorcycleResponse(
+            m.Id.ToString(),
+            m.Year,
+            m.Model,
+            m.Plate.Value
+        );
     }
 
     [HttpPatch("{id:guid}/placa")]
@@ -75,11 +89,15 @@ public sealed class MotorcyclesController : ControllerBase
         var m = await _db.Motorcycles.FindAsync(new object?[] { id }, ct);
         if (m is null) return NotFound();
 
-        // sem reflection
         m.UpdatePlate(new LicensePlate(req.Plate));
         await _db.SaveChangesAsync(ct);
 
-        return new MotorcycleResponse(m.Id, m.Identifier, m.Year, m.Model, m.Plate.Value);
+        return new MotorcycleResponse(
+            m.Id.ToString(),
+            m.Year,
+            m.Model,
+            m.Plate.Value
+        );
     }
 
     [HttpDelete("{id:guid}")]
