@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 namespace Mtu.Rentals.Domain.Entities;
 
 public sealed record Cnpj
@@ -6,10 +9,17 @@ public sealed record Cnpj
 
     public Cnpj(string value)
     {
-        Digits = new string(value.Where(char.IsDigit).ToArray());
-        if (Digits.Length != 14)
+        if (string.IsNullOrWhiteSpace(value))
+            throw new ArgumentException("cnpj_required", nameof(value));
+
+        var digits = new string(value.Where(char.IsDigit).ToArray());
+        if (digits.Length != 14)
             throw new ArgumentException("invalid_cnpj", nameof(value));
+
+        Digits = digits;
     }
 
-    private Cnpj() { }
+    private Cnpj() => Digits = string.Empty;
+
+    public override string ToString() => Digits;
 }

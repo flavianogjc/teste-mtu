@@ -62,7 +62,8 @@ public static class PricingPolicy
         {
             DateTimeKind.Utc         => dt,
             DateTimeKind.Local       => dt.ToUniversalTime(),
-            DateTimeKind.Unspecified => DateTime.SpecifyKind(dt, DateTimeKind.Utc)
+            DateTimeKind.Unspecified => DateTime.SpecifyKind(dt, DateTimeKind.Utc),
+            _ => throw new ArgumentOutOfRangeException(nameof(dt), $"Invalid DateTimeKind: {(int)dt.Kind}")
         };
         return new DateTime(u.Year, u.Month, u.Day, 0, 0, 0, DateTimeKind.Utc);
     }

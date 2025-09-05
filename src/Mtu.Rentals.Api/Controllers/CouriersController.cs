@@ -109,6 +109,30 @@ public sealed class CouriersController : ControllerBase
         return ToPtBrDto(c);
     }
 
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<CourierPtBrResponse>>> List(
+        [FromQuery(Name = "cnpj")] string? cnpj,
+        [FromQuery(Name = "identificador")] string? identifier,
+        CancellationToken ct)
+    {
+        var q = _db.Couriers.AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(cnpj))
+        {
+            q = q.Where(c => c.Cnpj.Digits == cnpj);
+        }
+
+        if (!string.IsNullOrWhiteSpace(identifier))
+        {
+            q = q.Where(c => c.Identifier == identifier);
+        }
+
+        var list = await q.ToListAsync(ct);
+        var items = list.Select(ToPtBrDto).ToList();
+
+        return Ok(items);
+    }
+
     // ===== Helpers =====
     private static CourierPtBrResponse ToPtBrDto(Courier c)
     {

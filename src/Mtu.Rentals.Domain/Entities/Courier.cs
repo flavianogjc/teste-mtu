@@ -35,7 +35,8 @@ public sealed class Courier
     {
         DateTimeKind.Utc         => dt,
         DateTimeKind.Local       => dt.ToUniversalTime(),
-        DateTimeKind.Unspecified => DateTime.SpecifyKind(dt, DateTimeKind.Utc) // treats as UTC
+        DateTimeKind.Unspecified => DateTime.SpecifyKind(dt, DateTimeKind.Utc),
+        _ => throw new ArgumentOutOfRangeException(nameof(dt), $"Invalid DateTimeKind: {(int)dt.Kind}")
     };
 
     // Maintains “date-only” semantics: midnight UTC
