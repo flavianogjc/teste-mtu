@@ -118,7 +118,7 @@ public sealed class CouriersController : ControllerBase
         string? base64 = EncodeBase64FromPath(c.CnhImagePath);
 
         return new CourierPtBrResponse(
-            Identificador: c.Id.ToString(),
+            Identificador: c.Identifier,
             Nome: c.Name,
             Cnpj: c.Cnpj.Digits,
             DataNascimento: dataNascimento,

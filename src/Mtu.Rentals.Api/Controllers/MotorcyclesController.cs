@@ -23,7 +23,7 @@ public sealed class MotorcyclesController : ControllerBase
     public async Task<ActionResult<MotorcycleResponse>> Create(
         [FromBody] CreateMotorcycleRequest req, CancellationToken ct)
     {
-        var entity = new Motorcycle(req.Year, req.Model, new LicensePlate(req.Plate));
+        var entity = new Motorcycle(req.Identifier, req.Year, req.Model, new LicensePlate(req.Plate));
 
         _db.Motorcycles.Add(entity);
         await _db.SaveChangesAsync(ct);
@@ -37,7 +37,8 @@ public sealed class MotorcyclesController : ControllerBase
 
         return CreatedAtAction(nameof(GetById), new { id = entity.Id },
             new MotorcycleResponse(
-                entity.Id.ToString(),
+                entity.Id,
+                entity.Identifier,
                 entity.Year,
                 entity.Model,
                 entity.Plate.Value
@@ -59,7 +60,8 @@ public sealed class MotorcyclesController : ControllerBase
 
         var items = await q
             .Select(m => new MotorcycleResponse(
-                m.Id.ToString(),
+                m.Id,
+                m.Identifier,
                 m.Year,
                 m.Model,
                 m.Plate.Value))
@@ -75,7 +77,8 @@ public sealed class MotorcyclesController : ControllerBase
         if (m is null) return NotFound();
 
         return new MotorcycleResponse(
-            m.Id.ToString(),
+            m.Id,
+            m.Identifier,
             m.Year,
             m.Model,
             m.Plate.Value
@@ -93,7 +96,8 @@ public sealed class MotorcyclesController : ControllerBase
         await _db.SaveChangesAsync(ct);
 
         return new MotorcycleResponse(
-            m.Id.ToString(),
+            m.Id,
+            m.Identifier,
             m.Year,
             m.Model,
             m.Plate.Value

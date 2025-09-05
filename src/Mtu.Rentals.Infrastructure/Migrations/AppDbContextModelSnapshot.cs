@@ -47,6 +47,11 @@ namespace Mtu.Rentals.Infrastructure.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("cnh_type");
 
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("identifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
@@ -68,6 +73,11 @@ namespace Mtu.Rentals.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
+
+                    b.Property<string>("Identifier")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("identifier");
 
                     b.Property<string>("Model")
                         .IsRequired()

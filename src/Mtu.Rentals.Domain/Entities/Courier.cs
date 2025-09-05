@@ -6,6 +6,7 @@ namespace Mtu.Rentals.Domain.Entities;
 public sealed class Courier
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
+    public string Identifier { get; private set; } = null!;
     public string Name { get; private set; } = null!;
     public Cnpj Cnpj { get; private set; } = null!;
 

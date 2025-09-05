@@ -19,6 +19,7 @@ namespace Mtu.Rentals.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
+                    identifier = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
                     cnpj = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
                     birth_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -50,6 +51,7 @@ namespace Mtu.Rentals.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
+                    identifier = table.Column<string>(type: "text", nullable: false),
                     year = table.Column<int>(type: "integer", nullable: false),
                     model = table.Column<string>(type: "text", nullable: false),
                     plate = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: false),
