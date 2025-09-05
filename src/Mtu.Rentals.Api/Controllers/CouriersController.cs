@@ -18,14 +18,10 @@ public sealed class CouriersController : ControllerBase
         [FromBody] CreateCourierPtBrRequest req,
         CancellationToken ct)
     {
-        // Parse direto de "1990-01-01T00:00:00Z" (ou com 'Z') sem imports extras
         DateTime birthUtc;
         try
         {
             birthUtc = DateTimeOffset.Parse(req.DataNascimento).UtcDateTime;
-            // se seu domínio usa DateOnly:
-            // var birthDateOnly = DateOnly.FromDateTime(birthUtc.Date);
-            // e passe birthDateOnly no construtor
         }
         catch
         {
